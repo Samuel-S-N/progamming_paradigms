@@ -1,10 +1,11 @@
 from abc import ABC, abstractmethod
 
-# o problema: ContaInvestimento herda de Conta e é forçada a sobrescrever sacar() só para lançar
-# uma exceção, porque a classe pai promete um comportamento (sacar) que ela não pode cumprir.
+# o problema: ContaInvestimento herda de Conta e é forçada a sobrescrever sacar() só para lançar uma exceção, 
+# porque a classe pai promete um comportamento (sacar) que ela não pode cumprir.
 # isso viola o LSP: qualquer código que use realizar_saque(conta, valor) esperando uma Conta
 # quebra ao receber uma ContaInvestimento. ou seja, ContaInvestimento não deveria herdar de uma
 # classe que promete sacar().
+
 # a solução tira a "promessa" de saque da classe base e coloca numa abstração própria
 # (ContaSacavel), que só as contas que realmente permitem saque implementam. ContaInvestimento
 # nunca herda dessa promessa, então nunca finge suportar um comportamento que não tem — sem
